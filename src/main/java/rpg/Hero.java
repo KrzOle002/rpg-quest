@@ -11,23 +11,30 @@ package rpg;
  */
 public class Hero {
 
-    // TODO 1: pola — imię (String), punkty życia (int), siła (int)
+  String name;
+  int lifePoints;
+  int strength;
 
+  public Hero(String name,int lifePoints, int strenght) {
+    this.name = name;
+    this.lifePoints = lifePoints;
+    this.strength = strenght;
+  }
 
-    // TODO 2: konstruktor, który przyjmuje imię, HP i siłę
-    //         i zapisuje je do pól (podpowiedź: słowo kluczowe `this`)
+  boolean isAlive() {
+    return this.lifePoints > 0;
+  }
 
+  void takeDamage(int amount) {
+    this.lifePoints = this.lifePoints - amount;
+  }
 
-    // TODO 3: metoda isAlive() — zwraca true, jeśli bohater ma więcej niż 0 HP
+  void attack(Hero target) {
+    target.takeDamage(strength);
+    System.out.println(this.getName() + " atakuje " + target.getName() + " za " + strength + " obrażeń!");
+  }
 
-
-    // TODO 4: metoda takeDamage(int amount) — odejmuje HP,
-    //         ale HP nigdy nie może spaść poniżej 0
-
-
-    // TODO 5: metoda attack(Hero target) — zadaje celowi obrażenia równe swojej sile
-    //         i wypisuje np. "Aragorn atakuje Gimli za 12 obrażeń!"
-
-
-    // TODO 6: metoda getName() — zwraca imię (przyda się w Main)
+  String getName() {
+    return this.name;
+  }
 }
