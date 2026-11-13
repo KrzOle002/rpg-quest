@@ -11,6 +11,7 @@ public class Main {
     Hero aragorn = new Hero("Aragorn", 100, 12);
     Hero gimli = new Hero("Gimli", 120, 9);
 
+
     int round = 1;
     while (aragorn.isAlive() && gimli.isAlive()) {
       System.out.println("\n--- Runda " + round + " ---");
@@ -18,8 +19,8 @@ public class Main {
       if (gimli.isAlive()) {
         gimli.attack(aragorn);
       }
-      System.out.println(aragorn.toString());
-      System.out.println(gimli.toString());
+      System.out.println(aragorn);
+      System.out.println(gimli);
 
       round++;
     }

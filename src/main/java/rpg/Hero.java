@@ -17,8 +17,14 @@ public class Hero {
   private final int maxLifePoints;
 
   public Hero(String name, int lifePoints, int strength) {
-    if (name.isBlank() || lifePoints < 0 || strength < 0) {
-      throw new IllegalArgumentException("Nieprawidłowy argument w konstruktorze");
+    if (name == null || name.isBlank()) {
+      throw new IllegalArgumentException("Nieprawidłowa nazwa bohatera");
+    }
+    if (lifePoints <= 0) {
+      throw new IllegalArgumentException("Poziom życia nie może być ujemny:" + lifePoints);
+    }
+    if (strength <= 0) {
+      throw new IllegalArgumentException("Siła nie może być ujemna:" + strength);
     }
 
     this.name = name;
@@ -45,7 +51,10 @@ public class Hero {
   }
 
   public void heal(int amount) {
-    lifePoints = Math.min(maxLifePoints, lifePoints + amount);
+    if (amount < 0) {
+      throw new IllegalArgumentException("Dodatkowe życie nie może być ujemne");
+    }
+    lifePoints = Math.max(maxLifePoints, lifePoints + amount);
   }
 
   public String getName() {
@@ -64,6 +73,6 @@ public class Hero {
   public String toString() {
 
     return this.getName() + " [HP " + this.getLifePoints() + "/" + this.maxLifePoints + ", STR "
-        + this.getStrength()+"]";
+        + this.getStrength() + "]";
   }
 }
