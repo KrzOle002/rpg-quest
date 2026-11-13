@@ -59,6 +59,10 @@ class Character {
         return this.lifePoints;
     }
 
+    public int getMaxLifePoints() {
+        return this.maxLifePoints;
+    }
+
     public int getStrength() {
         return this.strength;
     }
