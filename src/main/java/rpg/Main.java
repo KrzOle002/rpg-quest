@@ -2,30 +2,19 @@ package rpg;
 
 public class Main {
 
-  public static void main(String[] args) {
-    System.out.println("=== Java RPG ===");
+    public static void main(String[] args) {
+        System.out.println("=== Java RPG ===");
 
-    // Gdy skończysz klasę Hero, odkomentuj kod poniżej (Ctrl + / w IntelliJ)
-    // i uruchom program. Powinna odbyć się walka do śmierci jednego z bohaterów.
+        Hero aragorn = new Hero("Aragorn", 100, 12);
+        Monster goblin = new Monster("Goblin", 24, 3, 50);
+        Monster ork = new Monster("Ork", 32, 8, 100);
 
-    Hero aragorn = new Hero("Aragorn", 100, 12);
-    Hero gimli = new Hero("Gimli", 120, 9);
+        aragorn.fight(goblin);
 
+        aragorn.heal(Integer.MAX_VALUE);
 
-    int round = 1;
-    while (aragorn.isAlive() && gimli.isAlive()) {
-      System.out.println("\n--- Runda " + round + " ---");
-      aragorn.attack(gimli);
-      if (gimli.isAlive()) {
-        gimli.attack(aragorn);
-      }
-      System.out.println(aragorn);
-      System.out.println(gimli);
+        aragorn.fight(ork);
 
-      round++;
+        System.out.println(aragorn);
     }
-
-    Hero winner = aragorn.isAlive() ? aragorn : gimli;
-    System.out.println("\nZwycięzca: " + winner.getName() + "!");
-  }
 }

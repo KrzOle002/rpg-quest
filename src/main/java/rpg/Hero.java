@@ -1,78 +1,41 @@
 package rpg;
 
-/**
- * ETAP 1 — Twoja pierwsza klasa.
- * <p>
- * Klasa to "przepis" na obiekt. Hero opisuje, co KAŻDY bohater ma (pola) i co KAŻDY bohater umie
- * (metody). Konkretny bohater, np. "Aragorn", to obiekt stworzony z tego przepisu: new
- * Hero("Aragorn", 100, 12).
- * <p>
- * Wszystko, co masz zrobić, opisuje README.md (sekcja "Etap 1").
- */
-public class Hero {
+public class Hero extends Character {
 
-  private final String name;
-  private int lifePoints;
-  private final int strength;
-  private final int maxLifePoints;
+    private int experience = 0;
 
-  public Hero(String name, int lifePoints, int strength) {
-    if (name == null || name.isBlank()) {
-      throw new IllegalArgumentException("Nieprawidłowa nazwa bohatera");
-    }
-    if (lifePoints <= 0) {
-      throw new IllegalArgumentException("Poziom życia nie może być ujemny:" + lifePoints);
-    }
-    if (strength <= 0) {
-      throw new IllegalArgumentException("Siła nie może być ujemna:" + strength);
+    public Hero(String name, int lifePoints, int strength) {
+        super(name, lifePoints, strength);
     }
 
-    this.name = name;
-    this.lifePoints = lifePoints;
-    this.strength = strength;
-    this.maxLifePoints = lifePoints;
-  }
-
-  public boolean isAlive() {
-    return this.lifePoints > 0;
-  }
-
-  public void takeDamage(int amount) {
-    if (amount < 0) {
-      throw new IllegalArgumentException("Obrażenia nie mogą być ujemne");
+    public void gainExperience(int amount) {
+        if (amount > 0) {
+            experience = experience + amount;
+        }
     }
-    lifePoints = Math.max(0, lifePoints - amount);
-  }
 
-  public void attack(Hero target) {
-    target.takeDamage(strength);
-    System.out.println(
-        this.getName() + " atakuje " + target.getName() + " za " + strength + " obrażeń!");
-  }
+    public void fight(Monster monster) {
+        int round = 1;
+        while (this.isAlive() && monster.isAlive()) {
+            System.out.println("\n--- Runda " + round + " ---");
+            this.attack(monster);
+            if (monster.isAlive()) {
+                monster.attack(this);
+            }
+            System.out.println(this);
+            System.out.println(monster);
 
-  public void heal(int amount) {
-    if (amount < 0) {
-      throw new IllegalArgumentException("Dodatkowe życie nie może być ujemne");
+            round++;
+        }
+        if (this.isAlive()) {
+            this.gainExperience(monster.getExperienceReward());
+            System.out.println("\n" + this.getName() + " pokonuje " + monster.getName());
+        }
     }
-    lifePoints = Math.max(maxLifePoints, lifePoints + amount);
-  }
 
-  public String getName() {
-    return this.name;
-  }
 
-  public int getLifePoints() {
-    return this.lifePoints;
-  }
-
-  public int getStrength() {
-    return this.strength;
-  }
-
-  @Override
-  public String toString() {
-
-    return this.getName() + " [HP " + this.getLifePoints() + "/" + this.maxLifePoints + ", STR "
-        + this.getStrength() + "]";
-  }
+    @Override
+    public String toString() {
+        return super.toString() + " XP: " + this.experience;
+    }
 }
