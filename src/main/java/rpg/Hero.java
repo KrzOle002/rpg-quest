@@ -11,31 +11,59 @@ package rpg;
  */
 public class Hero {
 
-  String name;
-  int lifePoints;
-  int strength;
+  private final String name;
+  private int lifePoints;
+  private final int strength;
+  private final int maxLifePoints;
 
   public Hero(String name, int lifePoints, int strength) {
+    if (name.isBlank() || lifePoints < 0 || strength < 0) {
+      throw new IllegalArgumentException("Nieprawidłowy argument w konstruktorze");
+    }
+
     this.name = name;
     this.lifePoints = lifePoints;
     this.strength = strength;
+    this.maxLifePoints = lifePoints;
   }
 
-  boolean isAlive() {
+  public boolean isAlive() {
     return this.lifePoints > 0;
   }
 
-  void takeDamage(int amount) {
+  public void takeDamage(int amount) {
+    if (amount < 0) {
+      throw new IllegalArgumentException("Obrażenia nie mogą być ujemne");
+    }
     lifePoints = Math.max(0, lifePoints - amount);
   }
 
-  void attack(Hero target) {
+  public void attack(Hero target) {
     target.takeDamage(strength);
     System.out.println(
         this.getName() + " atakuje " + target.getName() + " za " + strength + " obrażeń!");
   }
 
-  String getName() {
+  public void heal(int amount) {
+    lifePoints = Math.min(maxLifePoints, lifePoints + amount);
+  }
+
+  public String getName() {
     return this.name;
+  }
+
+  public int getLifePoints() {
+    return this.lifePoints;
+  }
+
+  public int getStrength() {
+    return this.strength;
+  }
+
+  @Override
+  public String toString() {
+
+    return this.getName() + " [HP " + this.getLifePoints() + "/" + this.maxLifePoints + ", STR "
+        + this.getStrength()+"]";
   }
 }
