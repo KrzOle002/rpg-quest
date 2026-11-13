@@ -26,7 +26,9 @@ public class Hero {
   }
 
   void takeDamage(int amount) {
-    this.lifePoints = this.lifePoints - amount;
+    int difference = this.lifePoints - amount;
+    if(difference < 0)  this.lifePoints = 0;
+    else this.lifePoints = this.lifePoints - amount;
   }
 
   void attack(Hero target) {
