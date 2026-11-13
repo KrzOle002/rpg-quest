@@ -1,6 +1,6 @@
 package rpg;
 
-public class Monster extends Character{
+public class Monster extends Character {
 
     private final int experienceReward;
 
@@ -15,6 +15,6 @@ public class Monster extends Character{
 
     @Override
     public String toString() {
-        return super.toString() + " XP: "+ this.experienceReward;
+        return super.toString() + "Nagroda: " + this.experienceReward + " XP";
     }
 }

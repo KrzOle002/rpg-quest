@@ -1,6 +1,6 @@
 package rpg;
 
-public class Character {
+class Character {
     private final String name;
     private int lifePoints;
     private final int strength;
@@ -8,13 +8,13 @@ public class Character {
 
     public Character(String name, int lifePoints, int strength) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Nieprawidłowa nazwa bohatera");
+            throw new IllegalArgumentException("Nieprawidłowa nazwa postaci");
         }
         if (lifePoints <= 0) {
-            throw new IllegalArgumentException("Poziom życia nie może być ujemny:" + lifePoints);
+            throw new IllegalArgumentException("Poziom życia nie może być ujemny: " + lifePoints);
         }
         if (strength <= 0) {
-            throw new IllegalArgumentException("Siła nie może być ujemna:" + strength);
+            throw new IllegalArgumentException("Siła musi być większa od zera: " + strength);
         }
 
         this.name = name;
@@ -41,13 +41,12 @@ public class Character {
     }
 
     public void heal(int amount) {
-        if (amount < 0 ) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Dodatkowe życie nie może być ujemne");
         }
         if (amount >= maxLifePoints) {
             lifePoints = maxLifePoints;
-        }
-        else {
+        } else {
             lifePoints = Math.min(lifePoints + amount, maxLifePoints);
         }
     }
@@ -67,7 +66,7 @@ public class Character {
     @Override
     public String toString() {
 
-        return "\n" + this.getName() + " [HP " + this.getLifePoints() + "/" + this.maxLifePoints + ", STR "
+        return this.getName() + " [HP " + this.getLifePoints() + "/" + this.maxLifePoints + ", STR "
                 + this.getStrength() + "]";
     }
 }

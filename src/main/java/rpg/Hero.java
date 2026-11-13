@@ -9,9 +9,11 @@ public class Hero extends Character {
     }
 
     public void gainExperience(int amount) {
-        if (amount > 0) {
-            experience = experience + amount;
+        if (amount < 0) {
+            throw new IllegalArgumentException("Otrzymane doświadczenie nie może być ujemne");
         }
+        experience = experience + amount;
+
     }
 
     public void fight(Monster monster) {
@@ -30,6 +32,9 @@ public class Hero extends Character {
         if (this.isAlive()) {
             this.gainExperience(monster.getExperienceReward());
             System.out.println("\n" + this.getName() + " pokonuje " + monster.getName());
+        } else {
+            System.out.println("\n" + monster.getName() + " pokonuje " + this.getName());
+            System.out.println("\n Przegrana!");
         }
     }
 
