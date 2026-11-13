@@ -2,11 +2,11 @@ package rpg;
 
 /**
  * ETAP 1 — Twoja pierwsza klasa.
- *
- * Klasa to "przepis" na obiekt. Hero opisuje, co KAŻDY bohater ma (pola)
- * i co KAŻDY bohater umie (metody). Konkretny bohater, np. "Aragorn",
- * to obiekt stworzony z tego przepisu: new Hero("Aragorn", 100, 12).
- *
+ * <p>
+ * Klasa to "przepis" na obiekt. Hero opisuje, co KAŻDY bohater ma (pola) i co KAŻDY bohater umie
+ * (metody). Konkretny bohater, np. "Aragorn", to obiekt stworzony z tego przepisu: new
+ * Hero("Aragorn", 100, 12).
+ * <p>
  * Wszystko, co masz zrobić, opisuje README.md (sekcja "Etap 1").
  */
 public class Hero {
@@ -15,10 +15,10 @@ public class Hero {
   int lifePoints;
   int strength;
 
-  public Hero(String name,int lifePoints, int strenght) {
+  public Hero(String name, int lifePoints, int strength) {
     this.name = name;
     this.lifePoints = lifePoints;
-    this.strength = strenght;
+    this.strength = strength;
   }
 
   boolean isAlive() {
@@ -26,14 +26,13 @@ public class Hero {
   }
 
   void takeDamage(int amount) {
-    int difference = this.lifePoints - amount;
-    if(difference < 0)  this.lifePoints = 0;
-    else this.lifePoints = this.lifePoints - amount;
+    lifePoints = Math.max(0, lifePoints - amount);
   }
 
   void attack(Hero target) {
     target.takeDamage(strength);
-    System.out.println(this.getName() + " atakuje " + target.getName() + " za " + strength + " obrażeń!");
+    System.out.println(
+        this.getName() + " atakuje " + target.getName() + " za " + strength + " obrażeń!");
   }
 
   String getName() {
