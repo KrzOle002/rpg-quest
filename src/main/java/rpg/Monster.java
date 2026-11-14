@@ -1,6 +1,6 @@
 package rpg;
 
-public class Monster extends Character {
+public class Monster extends GameCharacter {
 
     private final int experienceReward;
 

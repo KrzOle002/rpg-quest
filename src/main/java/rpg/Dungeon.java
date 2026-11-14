@@ -15,12 +15,16 @@ public class Dungeon {
         monsterList.add(m);
     }
     public void explore(Hero hero) {
-        monsterList.forEach((monster) -> {
+        for (Monster monster : monsterList){
             hero.fight(monster);
+            if(!hero.isAlive()){
+                System.out.println("\n Przegrana!");
+                break;
+            }
             if(hero.getLifePoints() <= hero.getMaxLifePoints()/2) {
                 hero.useItem("Mikstura");
             }
-        });
+        };
     }
 
 }

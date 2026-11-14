@@ -3,7 +3,7 @@ package rpg;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Hero extends Character {
+public class Hero extends GameCharacter {
 
     private int experience = 0;
     private final Map<String, Integer> inventory = new HashMap<>();
@@ -39,7 +39,6 @@ public class Hero extends Character {
             System.out.println("\n" + this.getName() + " pokonuje " + monster.getName());
         } else {
             System.out.println("\n" + monster.getName() + " pokonuje " + this.getName());
-            System.out.println("\n Przegrana!");
         }
     }
 
@@ -58,7 +57,7 @@ public class Hero extends Character {
     }
 
     void useItem(String name) {
-        if (inventory.containsKey(name)) {
+        if (hasItem(name)) {
             switch (name) {
                 case "Mikstura":
                     this.heal(30);
@@ -69,8 +68,15 @@ public class Hero extends Character {
             }
             inventory.merge(name, -1, Integer::sum);
         } else {
+            System.out.println("Nie masz przedmiotu w ekwipunku");
+        }
+    }
+
+    boolean hasItem(String name){
+        if(!inventory.containsKey(name)){
             throw new IllegalArgumentException("Nie ma takiego przedmiotu w ekwipunku");
         }
+        return inventory.get(name) > 0;
     }
 
 

@@ -1,12 +1,12 @@
 package rpg;
 
-class Character {
+class GameCharacter {
     private final String name;
     private int lifePoints;
     private final int strength;
     private final int maxLifePoints;
 
-    public Character(String name, int lifePoints, int strength) {
+    public GameCharacter(String name, int lifePoints, int strength) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Nieprawidłowa nazwa postaci");
         }
@@ -34,7 +34,7 @@ class Character {
         lifePoints = Math.max(0, lifePoints - amount);
     }
 
-    public void attack(Character target) {
+    public void attack(GameCharacter target) {
         target.takeDamage(strength);
         System.out.println(
                 this.getName() + " atakuje " + target.getName() + " za " + strength + " obrażeń!");
@@ -43,6 +43,9 @@ class Character {
     public void heal(int amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Dodatkowe życie nie może być ujemne");
+        }
+        if(this.lifePoints <= 0){
+            throw new IllegalArgumentException("Nie można uleczyć po śmierci");
         }
         if (amount >= maxLifePoints) {
             lifePoints = maxLifePoints;
