@@ -67,10 +67,7 @@ public class Hero extends GameCharacter {
     }
 
     boolean hasItem(String name) {
-        if (!inventory.containsKey(name)) {
-            throw new IllegalArgumentException("Nie ma takiego przedmiotu w ekwipunku");
-        }
-        return inventory.get(name) > 0;
+        return inventory.getOrDefault(name, 0) > 0;
     }
 
 

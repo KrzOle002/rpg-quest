@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Dungeon {
 
-    final List<Monster> monsterList = new ArrayList<>();
-    private int defatedMonsters;
+    private final List<Monster> monsterList = new ArrayList<>();
+    private int defeatedMonsters;
 
     public void addMonster(Monster m) {
         monsterList.add(m);
@@ -14,6 +14,9 @@ public class Dungeon {
 
     public void explore(Hero hero) {
         for (Monster monster : monsterList) {
+            if (!monster.isAlive()) {
+                continue;
+            }
             hero.fight(monster);
             if (!hero.isAlive()) {
                 System.out.println("\n Przegrana!");
@@ -22,10 +25,9 @@ public class Dungeon {
             if (hero.getLifePoints() <= hero.getMaxLifePoints() / 2) {
                 hero.useItem("Mikstura");
             }
-            defatedMonsters++;
+            defeatedMonsters++;
         }
-        ;
-        System.out.println("\nPokonałeś " + defatedMonsters + " potworów");
+        System.out.println("\nPokonałeś " + defeatedMonsters + " potworów");
     }
 
 }

@@ -45,7 +45,7 @@ public class GameCharacter {
             throw new IllegalArgumentException("Dodatkowe życie nie może być ujemne");
         }
         if(this.lifePoints <= 0){
-            throw new IllegalArgumentException("Nie można uleczyć po śmierci");
+            throw new IllegalStateException("Nie można uleczyć po śmierci");
         }
         if (amount >= maxLifePoints) {
             lifePoints = maxLifePoints;
