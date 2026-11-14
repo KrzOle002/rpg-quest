@@ -15,6 +15,6 @@ public class Monster extends GameCharacter {
 
     @Override
     public String toString() {
-        return super.toString() + "Nagroda: " + this.experienceReward + " XP";
+        return super.toString() + " Nagroda: " + this.experienceReward + " XP";
     }
 }

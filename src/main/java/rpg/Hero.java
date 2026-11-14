@@ -49,11 +49,7 @@ public class Hero extends GameCharacter {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Nieprawidłowa nazwa przedmiotu");
         }
-        if (inventory.containsKey(name)) {
-            inventory.merge(name, count, Integer::sum);
-        } else {
-            inventory.put(name, count);
-        }
+        inventory.merge(name, count, Integer::sum);
     }
 
     void useItem(String name) {
@@ -63,8 +59,6 @@ public class Hero extends GameCharacter {
                     this.heal(30);
                     System.out.println("\nUleczono " + this.getName() + " do poziomu " + this.getLifePoints());
                     break;
-                default:
-                    break;
             }
             inventory.merge(name, -1, Integer::sum);
         } else {
@@ -72,8 +66,8 @@ public class Hero extends GameCharacter {
         }
     }
 
-    boolean hasItem(String name){
-        if(!inventory.containsKey(name)){
+    boolean hasItem(String name) {
+        if (!inventory.containsKey(name)) {
             throw new IllegalArgumentException("Nie ma takiego przedmiotu w ekwipunku");
         }
         return inventory.get(name) > 0;

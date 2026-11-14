@@ -1,6 +1,6 @@
 package rpg;
 
-class GameCharacter {
+public class GameCharacter {
     private final String name;
     private int lifePoints;
     private final int strength;
