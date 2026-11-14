@@ -52,6 +52,10 @@ public class Hero extends GameCharacter {
         inventory.merge(name, count, Integer::sum);
     }
 
+    void addItem(String name){
+        addItem(name,1);
+    }
+
     void useItem(String name) {
         if (hasItem(name)) {
             switch (name) {
@@ -69,7 +73,6 @@ public class Hero extends GameCharacter {
     boolean hasItem(String name) {
         return inventory.getOrDefault(name, 0) > 0;
     }
-
 
     @Override
     public String toString() {

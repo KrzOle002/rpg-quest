@@ -5,24 +5,25 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== Java RPG ===");
 
-        Hero aragorn = new Hero("Aragorn", 100, 12);
-        Monster goblin = new Monster("Goblin", 24, 15, 50);
-        Monster ork = new Monster("Ork", 32, 15, 100);
-//        Monster goblin2 = new Monster("Goblin", 24, 15, 50);
-//        Monster ork3 = new Monster("Ork", 32, 15, 100);
+        Hero aragorn = new Warrior("Aragorn", 100, 12);
+        Hero gandalf = new Warrior("Aragorn", 100, 12);
+
+        Goblin goblin = new Goblin("Goblin", 24, 15, 50);
+        Monster goblin2 = new Goblin("Goblin", 24, 15, 50);
+        Troll troll = new Troll("Troll", 32, 15, 75);
+        Monster troll2 = new Troll("Troll", 32, 15, 75);
+
         Dungeon dungeon = new Dungeon();
 
         aragorn.addItem("Mikstura", 2);
+        aragorn.addItem("Mikstura");
 
         dungeon.addMonster(goblin);
-        dungeon.addMonster(ork);
-//        dungeon.addMonster(goblin2);
-//        dungeon.addMonster(ork3);
+        dungeon.addMonster(troll);
+        dungeon.addMonster(goblin2);
+        dungeon.addMonster(troll2);
 
         dungeon.explore(aragorn);
-        dungeon.explore(aragorn);
-        dungeon.explore(aragorn);
-
 
         System.out.println(aragorn);
     }
