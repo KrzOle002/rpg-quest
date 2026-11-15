@@ -6,7 +6,7 @@ public class Main {
         System.out.println("=== Java RPG ===");
 
         Hero aragorn = new Warrior("Aragorn", 100, 12);
-        Hero gandalf = new Warrior("Aragorn", 100, 12);
+        Hero gandalf = new Mage("Gandalf", 100, 12);
 
         Goblin goblin = new Goblin("Goblin", 24, 15, 50);
         Monster goblin2 = new Goblin("Goblin", 24, 15, 50);
