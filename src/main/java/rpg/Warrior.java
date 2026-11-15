@@ -12,9 +12,14 @@ public class Warrior extends Hero {
 
     @Override
     public void attack(GameCharacter target) {
-        int chance = random.nextInt(4);
-        target.takeDamage(chance == 0 ? this.getStrength() * 2 : this.getStrength());
-        System.out.println("\nKRYTYK!");
+        int damage = getStrength();
+        if (random.nextInt(4) == 0) {
+            damage = damage * 2;
+            System.out.println("\nKRYTYK!");
+        }
+        target.takeDamage(damage);
+        System.out.println(
+                this.getName() + " atakuje " + target.getName() + " za " + damage + " obrażeń!");
     }
 
 }
