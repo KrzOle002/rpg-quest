@@ -20,13 +20,11 @@ public class Main {
         Monster troll2 = new Troll("Troll", 32, 15, 75);
 
         Dungeon dungeon = new Dungeon();
-        Dungeon dungeon2 = new Dungeon();
 
         dungeon.addMonster(goblin);
         dungeon.addMonster(troll);
-
-        dungeon2.addMonster(goblin2);
-        dungeon2.addMonster(troll2);
+        dungeon.addMonster(goblin2);
+        dungeon.addMonster(troll2);
 
         aragorn.addItem("Mikstura", 2);
         aragorn.addItem("Mikstura");
@@ -34,11 +32,10 @@ public class Main {
         gandalf.addItem("Mikstura", 2);
         gandalf.addItem("Mikstura");
 
-        party.add(aragorn);
         party.add(gandalf);
+        party.add(aragorn);
 
-        dungeon.explore(gandalf);
-        dungeon2.explore(aragorn);
+        dungeon.explore(party);
 
         System.out.println(gandalf);
         System.out.println(aragorn);

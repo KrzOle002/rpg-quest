@@ -8,7 +8,7 @@ public class Troll extends Monster {
     @Override
     public void attack(GameCharacter target) {
         super.attack(target);
-        super.heal(5);
+        heal(5);
         System.out.println( this.getName() + " leczy się za 5 HP" );
     }
 }

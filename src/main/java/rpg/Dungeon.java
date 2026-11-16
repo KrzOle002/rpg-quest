@@ -30,4 +30,14 @@ public class Dungeon {
         System.out.println("\nPokonałeś " + defeatedMonsters + " potworów");
     }
 
+    public void explore(List<Hero> party) {
+        for (Hero hero : party) {
+            System.out.println("\n>>> Do walki rusza " + hero.getName());
+            explore(hero);
+            if (hero.isAlive()) {
+                break;
+            }
+        }
+    }
+
 }
