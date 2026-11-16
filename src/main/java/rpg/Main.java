@@ -1,9 +1,15 @@
 package rpg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("=== Java RPG ===");
+
+        List<Hero> party = new ArrayList<>();
+
 
         Hero aragorn = new Warrior("Aragorn", 100, 12);
         Hero gandalf = new Mage("Gandalf", 100, 12);
@@ -14,17 +20,29 @@ public class Main {
         Monster troll2 = new Troll("Troll", 32, 15, 75);
 
         Dungeon dungeon = new Dungeon();
+        Dungeon dungeon2 = new Dungeon();
+
+        dungeon.addMonster(goblin);
+        dungeon.addMonster(troll);
+
+        dungeon2.addMonster(goblin2);
+        dungeon2.addMonster(troll2);
 
         aragorn.addItem("Mikstura", 2);
         aragorn.addItem("Mikstura");
 
-        dungeon.addMonster(goblin);
-        dungeon.addMonster(troll);
-        dungeon.addMonster(goblin2);
-        dungeon.addMonster(troll2);
+        gandalf.addItem("Mikstura", 2);
+        gandalf.addItem("Mikstura");
 
-        dungeon.explore(aragorn);
+        party.add(aragorn);
+        party.add(gandalf);
 
+        dungeon.explore(gandalf);
+        dungeon2.explore(aragorn);
+
+        System.out.println(gandalf);
         System.out.println(aragorn);
+
+
     }
 }
